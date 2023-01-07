@@ -18,15 +18,19 @@ function clamp($value, $min, $max) : int
 function neighboringBombs($behindState, $x, $y) : int
 {
     $count = 0;
-    $xStart = clamp($x - 1, 1, SQUARE);
-    $yStart = clamp($y - 1, 1, SQUARE);
-    $xEnd = clamp($xStart + 3, 1, SQUARE);
-    $yEnd = clamp($yStart + 3, 1, SQUARE);
-
+    $xStart = $x - 1;
+    $yStart = $y - 1;
+    $xEnd = $xStart + 3;
+    $yEnd = $yStart + 3;
+    
     for ($xx = $xStart; $xx < $xEnd; $xx++)
     {
+        if ($xx != clamp($xx, 1, SQUARE)) continue;
+
         for ($yy = $yStart; $yy < $yEnd; $yy++)
         {
+            if ($yy != clamp($yy, 1, SQUARE)) continue;
+
             if ($behindState[$yy][$xx] === C_BOMB) $count++;
         }
     }
@@ -168,8 +172,8 @@ function handleInput($input, &$currentState, $behindState) : string
 }
 
 initialize($currentState, $behindState);
-
-while (true)
+renderGame($behindState);
+while (false)
 {
     renderGame($currentState);
 
