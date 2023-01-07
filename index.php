@@ -172,8 +172,8 @@ function handleInput($input, &$currentState, $behindState) : string
 }
 
 initialize($currentState, $behindState);
-renderGame($behindState);
-while (false)
+
+while (true)
 {
     renderGame($currentState);
 
