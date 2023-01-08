@@ -115,10 +115,10 @@ function spread($x, $y, &$currentState, $behindState)
     if (!($x > 0 && $x <= SQUARE && $y > 0 && $y <= SQUARE)) return;
     elseif ($currentState[$y][$x] == $behindState[$y][$x]) return;
     
+    $currentState[$y][$x] = $behindState[$y][$x];
+
     if ($behindState[$y][$x] == C_EMPTY)
     {
-        $currentState[$y][$x] = $behindState[$y][$x];
-
         spread($x + 1, $y, $currentState, $behindState);
         spread($x - 1, $y, $currentState, $behindState);
         spread($x, $y + 1, $currentState, $behindState);
